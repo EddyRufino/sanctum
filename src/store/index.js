@@ -3,7 +3,8 @@ import Vuex from "vuex";
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = process.env.VUE_APP_API_URL;
+// axios.defaults.baseURL = process.env.VUE_APP_API_URL;
+axios.defaults.baseURL = 'http://localhost:8000';
 
 Vue.use(Vuex);
 
@@ -29,6 +30,14 @@ export default new Vuex.Store({
     async login({ dispatch }, credentials) {
       await axios.get('/sanctum/csrf-cookie');
       await axios.post("/login", credentials);
+
+      return dispatch("getUser");
+
+    },
+
+    async register({ dispatch }, credentials) {
+      await axios.get('/sanctum/csrf-cookie');
+      await axios.post("/register", credentials);
 
       return dispatch("getUser");
 
