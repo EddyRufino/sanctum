@@ -1,17 +1,17 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import axios from 'axios';
+import axios from "axios";
 
 axios.defaults.withCredentials = true;
 // axios.defaults.baseURL = process.env.VUE_APP_API_URL;
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = "http://localhost:8000";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     user: null,
-    auth: false,
+    auth: false
   },
   mutations: {
     SET_USER(state, user) {
@@ -24,33 +24,31 @@ export default new Vuex.Store({
       await axios.post("/logout");
 
       return dispatch("getUser");
-
     },
 
     async login({ dispatch }, credentials) {
-      await axios.get('/sanctum/csrf-cookie');
+      await axios.get("/sanctum/csrf-cookie");
       await axios.post("/login", credentials);
 
       return dispatch("getUser");
-
     },
 
     async register({ dispatch }, credentials) {
-      await axios.get('/sanctum/csrf-cookie');
+      await axios.get("/sanctum/csrf-cookie");
       await axios.post("/register", credentials);
 
       return dispatch("getUser");
-
     },
 
     getUser({ commit }) {
-      axios.get('/api/user')
-            .then(res => {
-              commit("SET_USER", res.data);
-            })
-            .catch(() => {
-              commit("SET_USER", null);
-            });
+      axios
+        .get("/api/user")
+        .then(res => {
+          commit("SET_USER", res.data);
+        })
+        .catch(() => {
+          commit("SET_USER", null);
+        });
     }
   },
   modules: {}
