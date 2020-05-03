@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-app>
     <v-card class="d-inline-block mx-auto">
     <v-container>
       <v-row justify="space-between">
@@ -41,7 +41,7 @@
       </v-row>
     </v-container>
   </v-card>
-  </div>
+</v-app>
 </template>
 
 <style lang="scss">

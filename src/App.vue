@@ -4,11 +4,10 @@
     <v-content>
       <router-view />
     </v-content>
-    <v-app-bar app color="primary">
+    <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
-        <v-btn @click.stop="drawer = !drawer" color="primary" elevation="0">
-          <v-icon>reorder</v-icon>
-        </v-btn>
+        <v-app-bar-nav-icon color="white" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <span light class="subheading">CenterPage</span>
       </div>
 
       <v-spacer></v-spacer>
@@ -21,13 +20,17 @@
       </template>
       
       <template v-else>
-        <v-btn color="primary" elevation="0">
-          <router-link  to="/login">Login</router-link>
+        <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn text>
+          <router-link to="/login">Login</router-link>
         </v-btn>
 
-        <v-btn color="primary" elevation="0">
+        <v-divider vertical></v-divider>
+
+        <v-btn text>
           <router-link  to="/register">Register</router-link>
         </v-btn>
+        </v-toolbar-items>
       </template>
     </v-app-bar>
 
@@ -122,7 +125,7 @@ a {
   cursor: pointer;
 
   &:hover {
-    background-color: #c1c1c1 !important;
+    background-color: #F5F5F5 !important;
   }
 }
 .color-user-nav {
